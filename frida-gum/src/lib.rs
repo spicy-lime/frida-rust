@@ -110,6 +110,9 @@ pub use backtracer::*;
 
 #[cfg(feature = "script")]
 mod script;
+#[cfg(feature = "invocation-listener")]
+mod invocation_listener;
+
 #[cfg(feature = "script")]
 pub use script::*;
 

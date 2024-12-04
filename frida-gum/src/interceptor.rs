@@ -15,10 +15,8 @@ use {
 #[cfg(feature = "invocation-listener")]
 use core::ffi::c_void;
 #[cfg(feature = "invocation-listener")]
-mod invocation_listener;
-#[cfg(feature = "invocation-listener")]
 #[cfg_attr(docsrs, doc(cfg(feature = "invocation-listener")))]
-pub use invocation_listener::*;
+pub use crate::invocation_listener::*;
 
 /// Function hooking engine interface.
 pub struct Interceptor {
