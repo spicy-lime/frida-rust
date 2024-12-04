@@ -76,7 +76,7 @@ pub(crate) fn probe_listener_transform<I: ProbeListener>(
 
 /// Represents the processor state when an [`InvocationListener`] is entered.
 pub struct InvocationContext<'a> {
-    context: *mut gum_sys::GumInvocationContext,
+    pub context: *mut gum_sys::GumInvocationContext,
     phantom: PhantomData<&'a gum_sys::GumInvocationContext>,
 }
 
