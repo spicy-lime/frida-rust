@@ -15,7 +15,7 @@ use {
 use core::ffi::c_void;
 
 pub mod invocation_listener;
-use invocation_listener::*;
+pub use invocation_listener::*;
 
 /// Function hooking engine interface.
 pub struct Interceptor {
