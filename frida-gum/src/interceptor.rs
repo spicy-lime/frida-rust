@@ -12,11 +12,8 @@ use {
     frida_gum_sys as gum_sys,
 };
 
-#[cfg(feature = "invocation-listener")]
 use core::ffi::c_void;
-#[cfg(feature = "invocation-listener")]
-#[cfg_attr(docsrs, doc(cfg(feature = "invocation-listener")))]
-pub use crate::invocation_listener::*;
+use crate::invocation_listener::*;
 
 /// Function hooking engine interface.
 pub struct Interceptor {
@@ -58,8 +55,6 @@ impl Interceptor {
     ///
     /// The provided address *must* point to the start of a function in a valid
     /// memory region.
-    #[cfg(feature = "invocation-listener")]
-    #[cfg_attr(docsrs, doc(cfg(feature = "invocation-listener")))]
     pub fn attach<I: InvocationListener>(
         &mut self,
         f: NativePointer,
@@ -89,8 +84,6 @@ impl Interceptor {
     /// # Safety
     ///
     /// The provided address *must* point to a valid instruction.
-    #[cfg(feature = "invocation-listener")]
-    #[cfg_attr(docsrs, doc(cfg(feature = "invocation-listener")))]
     pub fn attach_instruction<I: ProbeListener>(
         &mut self,
         instr: NativePointer,
@@ -120,8 +113,6 @@ impl Interceptor {
     /// # Safety
     ///
     /// The listener *must* have been attached with [`Interceptor::attach()`].
-    #[cfg(feature = "invocation-listener")]
-    #[cfg_attr(docsrs, doc(cfg(feature = "invocation-listener")))]
     pub fn detach(&mut self, listener: Listener) {
         let Listener(NativePointer(ptr)) = listener;
         unsafe {
@@ -228,8 +219,6 @@ impl Interceptor {
     /// # Safety
     ///
     /// Should only be called from within a hook or replacement function.
-    #[cfg(feature = "invocation-listener")]
-    #[cfg_attr(docsrs, doc(cfg(feature = "invocation-listener")))]
     pub fn current_invocation<'a>() -> InvocationContext<'a> {
         InvocationContext::from_raw(unsafe { gum_sys::gum_interceptor_get_current_invocation() })
     }
